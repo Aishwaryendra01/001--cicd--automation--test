@@ -4,9 +4,7 @@ on:
   pull_request:
     branches:
       - main  # Trigger this workflow for pull requests targeting the main branch
-    paths:
-      - '**/*.java'  # Only trigger when Java files are modified
-
+   
 jobs:
   build:
     runs-on: windows-latest  # Use a Windows runner to handle Windows paths
