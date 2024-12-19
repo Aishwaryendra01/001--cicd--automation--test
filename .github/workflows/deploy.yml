@@ -1,36 +1,36 @@
-name: Java Build and Folder Creation
+name: Java Build on Pull Request
 
 on:
-  push:
+  pull_request:
     branches:
-      - main
-  
+      - main  # Trigger this workflow for pull requests targeting the main branch
+    paths:
+      - '**/*.java'  # Only trigger when Java files are modified
 
 jobs:
   build:
-    runs-on: windows-latest  # Use a Windows environment for the job
+    runs-on: windows-latest  # Use a Windows runner to handle Windows paths
 
     steps:
       - name: Checkout the code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3  # Checkout the repository code
 
       - name: Set up Java JDK
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v3  # Set up Java
         with:
-          java-version: '17'  # Specify the version of Java (adjust based on your needs)
+          java-version: '17'  # Use a specific Java version, adjust as needed
           distribution: 'adoptopenjdk'
 
       - name: Build the project using Maven
         run: |
-          # Run the build command (adjust if you're using Gradle or another build tool)
-          mvn clean install
+          mvn clean install  # Adjust if you are using a different build tool like Gradle
 
       - name: Create a folder in the desired location
         run: |
-          # Create a folder on the system's Desktop (adjust for your OS)
-          mkdir "C:\Users\OneDrive\Desktop\Content\BuildOutput"
+          # Create a folder at the given path
+          mkdir "C:\Users\OneDrive\Desktop\Content\PR-BuildOutput"
           
-          # Move the build output to the folder
-          move target\* "C:\Users\OneDrive\Desktop\Content\BuildOutput"
+          # Move the build output files (e.g., target folder) to the newly created folder
+          move target\* "C:\Users\OneDrive\Desktop\Content\PR-BuildOutput"
         
         shell: pwsh  # Use PowerShell for Windows paths
