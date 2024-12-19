@@ -1,62 +1,36 @@
-name: Build and Zip Java Code
-
-
+name: Java Build and Folder Creation
 
 on:
-
- push:
-
-  branches:
-
-   - main # This triggers the workflow on push to the main branch
+  push:
+    branches:
+      - main
+  
 
 jobs:
+  build:
+    runs-on: windows-latest  # Use a Windows environment for the job
 
- build:
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v3
 
-  runs-on: windows-latest # Using Windows for the local storage path
+      - name: Set up Java JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'  # Specify the version of Java (adjust based on your needs)
+          distribution: 'adoptopenjdk'
 
-  steps:
+      - name: Build the project using Maven
+        run: |
+          # Run the build command (adjust if you're using Gradle or another build tool)
+          mvn clean install
 
-   - name: Checkout Code
-
-    uses: actions/checkout@v2 # Check out the repository code
-
-   - name: Set up JDK
-
-    uses: actions/setup-java@v2
-
-    with:
-
-     java-version: '17' # Or use your required version of Java
-
-   - name: Build with Maven
-
-    run: mvn clean install # Use Maven to build the Java project
-
-   - name: Create Zip of Built Project
-
-    run: |
-
-     # Create a directory where the zip will be saved
-
-     mkdir C:\Users\anara\OneDrive\Desktop\Content\output
-
-     # Copy the built files (assuming your artifact is in the target folder)
-
-     copy target\*.jar C:\Users\anara\OneDrive\Desktop\Content\output
-
-     # Create a zip file of the directory
-
-     powershell Compress-Archive -Path C:\Users\anara\OneDrive\Desktop\Content\output -DestinationPath C:\Users\anara\OneDrive\Desktop\Content\output.zip
-
-
-
-
-
-
-
-
-
-
-
+      - name: Create a folder in the desired location
+        run: |
+          # Create a folder on the system's Desktop (adjust for your OS)
+          mkdir "C:\Users\OneDrive\Desktop\Content\BuildOutput"
+          
+          # Move the build output to the folder
+          move target\* "C:\Users\OneDrive\Desktop\Content\BuildOutput"
+        
+        shell: pwsh  # Use PowerShell for Windows paths
