@@ -4,8 +4,7 @@ on:
   pull_request:
     branches:
       - main  # Trigger this workflow for pull requests targeting the main branch
-    paths:
-      - '**/*.java'  # Only trigger when Java files are modified
+ 
 
 jobs:
   build:
@@ -20,15 +19,14 @@ jobs:
 
 
       - name: Build the project using Maven
-        run: |
+        run: 
           mvn clean install  # Adjust if you are using a different build tool like Gradle
 
       - name: Create a folder in the desired location
-        run: |
+        run: 
           # Create a folder at the given path
           mkdir "C:\Users\OneDrive\Desktop\Content\PR-BuildOutput"
           
-          # Move the build output files (e.g., target folder) to the newly created folder
-          move target\* "C:\Users\OneDrive\Desktop\Content\PR-BuildOutput"
+          
         
         shell: pwsh  # Use PowerShell for Windows paths
