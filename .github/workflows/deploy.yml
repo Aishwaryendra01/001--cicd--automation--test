@@ -48,7 +48,7 @@ jobs:
 
      # Create a zip file of the directory
 
-     powershell Compress-Archive -Path C:\Users\N537182\Desktop\DemoProject\output -DestinationPath C:\Users\anara\OneDrive\Desktop\Content\output.zip
+     powershell Compress-Archive -Path C:\Users\anara\OneDrive\Desktop\Content\output -DestinationPath C:\Users\anara\OneDrive\Desktop\Content\output.zip
 
 
 
