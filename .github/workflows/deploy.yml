@@ -1,0 +1,62 @@
+name: Build and Zip Java Code
+
+
+
+on:
+
+ push:
+
+  branches:
+
+   - main # This triggers the workflow on push to the main branch
+
+jobs:
+
+ build:
+
+  runs-on: windows-latest # Using Windows for the local storage path
+
+  steps:
+
+   - name: Checkout Code
+
+    uses: actions/checkout@v2 # Check out the repository code
+
+   - name: Set up JDK
+
+    uses: actions/setup-java@v2
+
+    with:
+
+     java-version: '17' # Or use your required version of Java
+
+   - name: Build with Maven
+
+    run: mvn clean install # Use Maven to build the Java project
+
+   - name: Create Zip of Built Project
+
+    run: |
+
+     # Create a directory where the zip will be saved
+
+     mkdir C:\Users\anara\OneDrive\Desktop\Content\output
+
+     # Copy the built files (assuming your artifact is in the target folder)
+
+     copy target\*.jar C:\Users\anara\OneDrive\Desktop\Content\output
+
+     # Create a zip file of the directory
+
+     powershell Compress-Archive -Path C:\Users\N537182\Desktop\DemoProject\output -DestinationPath C:\Users\anara\OneDrive\Desktop\Content\output.zip
+
+
+
+
+
+
+
+
+
+
+
