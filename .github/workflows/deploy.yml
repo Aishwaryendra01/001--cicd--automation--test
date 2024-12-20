@@ -25,10 +25,23 @@ jobs:
       - name: Build the project using Maven
         run: 
           mvn clean install  
-
-      - name: Create a folder in the desired location
+      - name: Create a new branch develop2
+        run: |
+          git checkout -b develop2
+          git push origin develop2
+        env:
+         GH_TOKEN: ${{ secrets.GH_TOKEN }}
+    
+      - name: Commit and push changes to develop2
         run: 
-          mkdir "C:\Users\N537182\Desktop\DemoProject\New folder"
+         git config user.name "Aishwaryendra01"
+         git config user.email "a.narayanssm@gmail.com"
+         git add .
+         git commit -m "Add changes from workflow"
+         git push origin develop2
+        env:
+         GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      
           
           
         
