@@ -35,7 +35,7 @@ jobs:
          git reset
          git add .
          git commit -m "Add changes from workflow"
-         git push https://${{ secrets.GH_TOKEN }}@github.com/$https://github.com/Aishwaryendra01/001--cicd--automation--test/dev2
+         git push https://${{ secrets.GH_TOKEN }}github.com/Aishwaryendra01/001--cicd--automation--test/dev2
         
         env:
          GH_TOKEN: ${{ secrets.GH_TOKEN }}
