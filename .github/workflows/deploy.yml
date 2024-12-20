@@ -8,7 +8,8 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest  
+    runs-on: windows-latest
+ 
 
     steps:
       - name: Checkout the code
@@ -24,24 +25,20 @@ jobs:
 
       - name: Build the project using Maven
         run: 
-          mvn clean install  
-      - name: Create a new branch develop2
-        run: |
-          git checkout -b develop2
-          git push origin develop2
-        env:
-         GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          mvn clean install 
     
       - name: Commit and push changes to develop2
         run: 
          git config user.name "Aishwaryendra01"
          git config user.email "a.narayanssm@gmail.com"
+         git checkout --orphan dev2
+         git reset
          git add .
          git commit -m "Add changes from workflow"
-         git push origin develop2
+         git push https://${{ secrets.GH_TOKEN }}@github.com/$https://github.com/Aishwaryendra01/001--cicd--automation--test/dev2
+        
         env:
          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-      
           
           
         
