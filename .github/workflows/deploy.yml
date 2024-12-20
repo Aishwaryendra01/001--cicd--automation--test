@@ -28,7 +28,8 @@ jobs:
 
       - name: Create a folder in the desired location
         run: 
-          mkdir "C:\Users\N537182\Desktop\DemoProject\New folder"
+          mkdir "C:\Users\N537182\Desktop\DemoProject\Newdemo"
+      
           
           
         
