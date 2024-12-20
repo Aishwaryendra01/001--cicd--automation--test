@@ -3,30 +3,29 @@ name: Java Build on Pull Request2
 on:
   pull_request:
     branches:
-      - main  # Trigger this workflow for pull requests targeting the main branch
+      - main  
  
 
 jobs:
   build:
-    runs-on: windows-latest  # Use a Windows runner to handle Windows paths
+    runs-on: windows-latest  
 
     steps:
       - name: Checkout the code
-        uses: actions/checkout@v3  # Checkout the repository code
+        uses: actions/checkout@v3  
 
       - name: Set up Java JDK
-        uses: actions/setup-java@v3  # Set up Java
+        uses: actions/setup-java@v3  
 
 
       - name: Build the project using Maven
         run: 
-          mvn clean install  # Adjust if you are using a different build tool like Gradle
+          mvn clean install  
 
       - name: Create a folder in the desired location
         run: 
-          # Create a folder at the given path
           mkdir "C:\Users\OneDrive\Desktop\Content\PR-BuildOutput"
           
           
         
-        shell: pwsh  # Use PowerShell for Windows paths
+        shell: pwsh  
