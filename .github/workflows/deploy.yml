@@ -33,6 +33,7 @@ jobs:
          git config user.email "a.narayanssm@gmail.com"
          git checkout --orphan build-dev2
          git reset --hard
+         git add README.md
          git add .
          git commit -m "adding builds"
          git remote set-url origin https://${{ secrets.GH_TOKEN }}@github.com/Aishwaryendra01/001--cicd--automation--test.git
